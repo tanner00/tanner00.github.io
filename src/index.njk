@@ -1,0 +1,118 @@
+---
+layout: base.njk
+title: Home
+---
+<section class="section section--intro" id="top">
+  <h1 class="intro-name">{{ site.name }}</h1>
+  {% if site.role %}<p class="intro-role">{{ site.role }}</p>{% endif %}
+</section>
+
+<section class="section" id="about">
+  <p class="about-short measure-narrow">{{ site.aboutShort }}</p>
+</section>
+
+<section class="section" id="past-work">
+  <h2 class="section-heading">Past work</h2>
+  <ol class="experience-list">
+    {% for job in experience %}
+    <li class="experience-item">
+      <div class="experience-item__meta">
+        <span class="experience-item__title">{{ job.title }}</span>
+        <span class="experience-item__company">{{ job.company }}</span>
+        <span class="experience-item__period">{{ job.period }}</span>
+      </div>
+      <p class="experience-item__desc">{{ job.description }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="section section--project" id="projects">
+  <h2 class="section-heading section-heading--center">{% if projects.repo %}<a href="{{ projects.repo }}">{{ projects.title }}</a>{% else %}{{ projects.title }}{% endif %}</h2>
+  <p class="project-desc measure-narrow">{{ projects.description }}</p>
+  {% if projects.demo %}
+  <div class="project-meta">
+    <div class="project-meta__links">
+      <a href="{{ projects.demo }}">Demo</a>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% if projects.screenshots.length %}
+<section class="section section--flush project-screenshots-wrap">
+  <div class="project-screenshots-grid" role="region" aria-label="Project screenshots">
+    {% for shot in projects.screenshots %}
+    <figure class="project-screenshots-grid__cell">
+      <button
+        type="button"
+        class="project-screenshots-grid__open"
+        data-lightbox-src="{{ shot.srcFull | default(shot.src) }}"
+        data-lightbox-alt="{{ shot.alt }}"
+        aria-label="View full size: {{ shot.alt }}"
+      >
+        {% if shot.src | isHttpUrl %}
+        {% set gridSrc = shot.src %}
+        <img
+          src="{{ gridSrc | screenshotThumb(720) }}"
+          srcset="{{ gridSrc | screenshotThumb(720) }} 720w, {{ gridSrc | screenshotThumb(1440) }} 1440w, {{ gridSrc }} 2560w"
+          sizes="(max-width: 40rem) 50vw, min(520px, 50vw)"
+          alt="{{ shot.alt }}"
+          loading="eager"
+          decoding="async"
+          width="960"
+          height="600"
+        >
+        {% else %}
+        <img src="{{ shot.src }}" alt="{{ shot.alt }}" loading="eager" decoding="async" width="960" height="600">
+        {% endif %}
+      </button>
+    </figure>
+    {% endfor %}
+  </div>
+  <dialog class="screenshot-lightbox" id="screenshot-lightbox" aria-modal="true">
+    <div class="screenshot-lightbox__frame">
+      <button type="button" class="screenshot-lightbox__close" aria-label="Close">&times;</button>
+      <img class="screenshot-lightbox__img" alt="">
+    </div>
+  </dialog>
+  <script src="{{ '/js/screenshot-lightbox.js' | url }}" defer></script>
+</section>
+{% endif %}
+
+{% if collections.post.length and site.writingSectionLimit %}
+<section class="section" id="writing">
+  <h2 class="section-heading">Writings</h2>
+  <ul class="writing-preview-list">
+    {% for post in collections.post | reverse | limit(site.writingSectionLimit) %}
+    <li class="writing-preview-item">
+      <a class="writing-preview-item__link" href="{{ post.url | url }}">{{ post.data.title }}</a>
+      <time class="writing-preview-item__date" datetime="{{ post.date | dateIso }}">{{ post.date | dateFormat }}</time>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="writing-more"><a href="{{ '/writings/' | url }}">All posts</a></p>
+</section>
+{% endif %}
+
+<section class="section contact" id="contact">
+  <div class="contact-inner">
+    <h2 class="section-heading">Contact</h2>
+    <div class="contact-links" role="navigation" aria-label="Contact links">
+      <div class="contact-links__slot contact-links__slot--start">
+        {%- if site.links.github -%}
+        <a class="contact-link contact-link--github" href="{{ site.links.github }}" aria-label="GitHub">{{ 'github.svg' | inlineSvg | safe }}</a>
+        {%- endif -%}
+      </div>
+      <div class="contact-links__slot contact-links__slot--center">
+        {%- if site.links.email -%}
+        <a class="contact-link contact-link--email" href="{{ site.links.email }}" aria-label="Email">{{ 'mail.svg' | inlineSvg | safe }}</a>
+        {%- endif -%}
+      </div>
+      <div class="contact-links__slot contact-links__slot--end">
+        {%- if site.links.linkedin -%}
+        <a class="contact-link contact-link--linkedin" href="{{ site.links.linkedin }}" aria-label="LinkedIn">{{ 'linkedin.svg' | inlineSvg | safe }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>

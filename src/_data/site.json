@@ -1,0 +1,14 @@
+{
+  "name": "Lorem Ipsum",
+  "role": "Dolor sit amet consectetuer",
+  "aboutShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+  "url": "https://tannerwillis.com",
+  "ogImage": "",
+  "writingSectionLimit": 3,
+  "links": {
+    "github": "https://github.com/yourusername",
+    "email": "mailto:you@example.com",
+    "linkedin": "https://linkedin.com/in/yourusername"
+  }
+}

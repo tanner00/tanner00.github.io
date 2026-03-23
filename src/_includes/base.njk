@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <title>{% if title %}{{ site.name }} | {{ title }}{% else %}{{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.bio }}">
+  {% if site.url %}
+  {% set canonical = page.url | joinUrl(site.url) %}
+  <link rel="canonical" href="{{ canonical }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{% if title %}{{ site.name }} | {{ title }}{% else %}{{ site.name }}{% endif %}">
+  <meta property="og:description" content="{{ description or site.bio }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:type" content="{% if tags and ('post' in tags) %}article{% else %}website{% endif %}">
+  {% if site.ogImage %}
+  {% set ogImg = site.ogImage | url %}
+  <meta property="og:image" content="{{ ogImg | joinUrl(site.url) }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ ogImg | joinUrl(site.url) }}">
+  {% else %}
+  <meta name="twitter:card" content="summary">
+  {% endif %}
+  <meta name="twitter:title" content="{% if title %}{{ site.name }} | {{ title }}{% else %}{{ site.name }}{% endif %}">
+  <meta name="twitter:description" content="{{ description or site.bio }}">
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/css/katex.min.css' | url }}">
+  <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
+</head>
+<body>
+  <header class="site-header">
+    {% if page.url | startsWith('/writings') %}
+    <a class="site-header__link" href="{{ '/' | url }}">Home</a>
+    {% else %}
+    <a class="site-header__link" href="{{ '/writings/' | url }}">Writings</a>
+    {% endif %}
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ site.name }}</p>
+  </footer>
+</body>
+</html>

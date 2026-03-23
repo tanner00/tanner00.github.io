@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: Writings
+eleventyExcludeFromCollections: true
+---
+<section class="section">
+  {% set posts = collections.post | reverse %}
+  {% if posts.length %}
+  <ul class="blog-list">
+    {% for post in posts %}
+    <li class="blog-preview">
+      <h2><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
+      <time datetime="{{ post.date | dateIso }}">{{ post.date | dateFormat }}</time>
+      {% if post.data.description %}
+      <p>{{ post.data.description }}</p>
+      {% endif %}
+      {% if post.data.tags %}
+      <div class="post-tags">
+        {% for tag in post.data.tags %}{% if tag !== "post" %}
+        <span class="tag">{{ tag }}</span>
+        {% endif %}{% endfor %}
+      </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No posts yet.</p>
+  {% endif %}
+</section>

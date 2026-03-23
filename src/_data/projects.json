@@ -1,0 +1,23 @@
+{
+  "title": "Lorem ipsum project",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. The images below are not mine—they are placeholders for layout only.",
+  "repo": "https://github.com/yourusername/vulkan-renderer",
+  "screenshots": [
+    {
+      "src": "https://raw.githubusercontent.com/google/filament/main/docs/images/screenshot_sponza.jpg",
+      "alt": "Lorem ipsum dolor sit amet — placeholder image one"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/google/filament/main/docs/images/samples/example_bistro1.jpg",
+      "alt": "Lorem ipsum dolor sit amet — placeholder image two"
+    },
+    {
+      "src": "https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/gameworks/Falcor/SunTemple_1.png",
+      "alt": "Lorem ipsum dolor sit amet — placeholder image three"
+    },
+    {
+      "src": "https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/gameworks/Falcor/NewImages/EmeraldSquare1.png",
+      "alt": "Lorem ipsum dolor sit amet — placeholder image four"
+    }
+  ]
+}
